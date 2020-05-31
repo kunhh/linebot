@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 LINE Corporation
+ * Copyright 2018 LINE Corporation
  *
  * LINE Corporation licenses this file to you under the Apache License,
  * version 2.0 (the "License"); you may not use this file except in compliance
@@ -14,22 +14,21 @@
  * under the License.
  */
 
-package com.tool.linebot;
+package com.tool.linebot.config;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+@Component
+@ConfigurationProperties(prefix = "garbage.reminder")
+public class LineProperties {
+    private String id;
 
-@SpringBootApplication
-public class KitchenSinkApplication {
-    static Path downloadedContentDir;
+	public String getId() {
+		return id;
+	}
 
-    public static void main(String[] args) throws IOException {
-        downloadedContentDir = Files.createTempDirectory("line-bot");
-        SpringApplication.run(KitchenSinkApplication.class, args);
-    }
-
+	public void setId(String id) {
+		this.id = id;
+	}
 }
