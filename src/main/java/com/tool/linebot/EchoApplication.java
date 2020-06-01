@@ -50,7 +50,7 @@ public class EchoApplication {
 	@EventMapping
 	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
 		String message = "失敗";
-		if ("福岡の天気".equals(event)){
+		if ("福岡の天気".equals(event.getMessage().getText())){
 			try {
 				URL url = new URL("http://weather.livedoor.com/forecast/webservice/json/v1?city=130010");
 				String json;
