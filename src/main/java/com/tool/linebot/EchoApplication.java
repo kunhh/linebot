@@ -108,7 +108,7 @@ public class EchoApplication {
 				.map(o -> (Bindings) o)
 				.map(o -> o.get("dateLabel") + "\t" + o.get("telop") + "\n" )
 				.forEach(i -> sj.add(String.valueOf(i)));
-				message = event.getMessage().getText() + "の天気は" + sj.toString() + "\n" + "です。";
+				message = event.getMessage().getText() + "の天気は" + "\n" + sj.toString() +  "です。";
 
 			} catch (Exception e) {
 				e.printStackTrace();
