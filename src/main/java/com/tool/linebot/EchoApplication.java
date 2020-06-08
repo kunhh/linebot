@@ -19,6 +19,7 @@ package com.tool.linebot;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
@@ -41,6 +42,7 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
+
 	private final Logger log = LoggerFactory.getLogger(EchoApplication.class);
 
 	public static void main(String[] args) {
@@ -49,10 +51,45 @@ public class EchoApplication {
 
 	@EventMapping
 	public Message handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("福岡", "400010");
+		map.put("八幡", "400020");
+		map.put("飯塚", "400030");
+		map.put("久留米", "400040");
+		map.put("佐賀", "410010");
+		map.put("伊万里", "410020");
+		map.put("長崎", "420010");
+		map.put("佐世保", "420020");
+		map.put("厳原", "420030");
+		map.put("福江", "420040");
+		map.put("熊本", "430010");
+		map.put("阿蘇", "430020");
+		map.put("牛深", "430030");
+		map.put("人吉", "430040");
+		map.put("大分", "440010");
+		map.put("中津", "440020");
+		map.put("日田", "440030");
+		map.put("佐伯", "440040");
+		map.put("宮崎", "450010");
+		map.put("延岡", "450020");
+		map.put("都城", "450030");
+		map.put("高千穂", "450040");
+		map.put("鹿児島", "460010");
+		map.put("種子島", "460030");
+		map.put("名瀬", "460040");
+		map.put("那覇", "471010");
+		map.put("名護", "471020");
+		map.put("久米島", "471030");
+		map.put("南大東", "472000");
+		map.put("宮古島", "473000");
+		map.put("石垣島", "474010");
+		map.put("与那国島", "474020");
+
 		String message = "失敗";
-		if ("福岡の天気".equals(event.getMessage().getText())){
+		if (map.containsKey(event.getMessage().getText())){
 			try {
-				URL url = new URL("http://weather.livedoor.com/forecast/webservice/json/v1?city=130010");
+				URL url = new URL("http://weather.livedoor.com/forecast/webservice/json/v1?city=" + map.get(event.getMessage().getText()));
 				String json;
 				// Get通信してStringに（evalするために丸括弧で囲む）
 				try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));) {
