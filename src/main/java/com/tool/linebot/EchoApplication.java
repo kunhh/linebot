@@ -106,9 +106,9 @@ public class EchoApplication {
 				// js配列は values() で
 				jsObj.values().stream()
 				.map(o -> (Bindings) o)
-				.map(o -> o.get("dateLabel") + "\t" + o.get("telop"))
+				.map(o -> o.get("dateLabel") + "\t" + o.get("telop") + "\n" )
 				.forEach(i -> sj.add(String.valueOf(i)));
-				message = sj.toString();
+				message = event.getMessage().getText() + "の天気は" + sj.toString() + "\n" + "です。";
 
 			} catch (Exception e) {
 				e.printStackTrace();
